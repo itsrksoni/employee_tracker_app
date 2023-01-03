@@ -33,6 +33,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  #
+  config.active_storage.variant_processor = :mini_magick
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
@@ -71,5 +74,9 @@ Rails.application.configure do
 
 # default URL options for the Devise mailer in each environment.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = { :address => '127.0.0.1', :port => 1025 }
+config.action_mailer.raise_delivery_errors = false
 
 end

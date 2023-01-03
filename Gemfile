@@ -74,3 +74,9 @@ end
 # devise gem
 
 gem 'devise'
+
+gem "image_processing", "~> 1.0"
+
+# gem devise invitable to invite new employee
+
+gem 'devise_invitable', '~> 2.0.0'

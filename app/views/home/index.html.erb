@@ -1,5 +1,19 @@
 <div style= "text-align: center;
   border: 3px solid green; margin-top: 300px;">
-  <h3 style="color:blue;">Employee Tracker App !</h3>
+  <h3 style="color:blue;">Employee Tracker App ! </h3>
+   <% if current_employee %>
+ <p class="">
+   <%= link_to "My Profile", my_profile_path %>
+</p>
+<p>
+<%= button_to(
+              "Log Out",
+        destroy_employee_session_path,
+        method: :delete
+      ) %> 
+  </p>
+  <% else %>
+  <p><%=link_to "Sign In", new_employee_session_path %></p>
+<% end %>
   <marquee width="60%" direction="right" height="100px"><p style="color:red;">Under Development </p></marquee>
 </div> 

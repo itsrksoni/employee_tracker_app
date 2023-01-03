@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_090155) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_03_121105) do
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.integer "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "divisions", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -29,8 +57,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_090155) do
     t.datetime "updated_at", null: false
     t.integer "master_role_id", null: false
     t.integer "division_id", null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.integer "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["division_id"], name: "index_employees_on_division_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index ["invitation_token"], name: "index_employees_on_invitation_token", unique: true
+    t.index ["invited_by_id"], name: "index_employees_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_employees_on_invited_by"
     t.index ["master_role_id"], name: "index_employees_on_master_role_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
@@ -56,6 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_090155) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "employees", "divisions"
   add_foreign_key "employees", "master_roles"
   add_foreign_key "project_assignments", "employees"

@@ -1,0 +1,8 @@
+<h1>My Profile</h1>
+<p><%=link_to "Edit",edit_employee_registration_path(current_employee.id)%></p>
+<% if current_employee.image.attached?%>
+<%= image_tag current_employee.image.variant(resize_to_limit: [100, 100]) %>
+<%end%>
+<h3> Username : <%= current_employee.username%> </h3></br>
+<h3> Name : <%= current_employee.name%> </h3></br>
+<h3>Email : <%= current_employee.email%></h3>
