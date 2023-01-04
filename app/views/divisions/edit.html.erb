@@ -1,0 +1,9 @@
+<div>
+    <h2>Update Division</h2> <br/>
+
+    <%= form_with(model: @division,url:divisions_edit_path) do |f| %> 
+        <%= f.label :name %>
+        <%= f.text_field :name %> <br/>
+        <%= f.submit %> <br/>
+    <% end %>
+</div>

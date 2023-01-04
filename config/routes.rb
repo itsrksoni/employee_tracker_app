@@ -29,5 +29,18 @@ Rails.application.routes.draw do
   put 'employees' => 'employees/registrations#update', :as => 'employee_registration'
   end
 
+  #routes for divisions
+  get 'divisions' => 'divisions#index', :as => 'divisions_index'
+  get 'divisions/show/:id' => 'divisions#show', :as => 'divisions_show'
+  post 'divisions' => 'divisions#create'
+  get 'divisions/new' => 'divisions#new', :as => 'new_division'
+  delete 'divisions/:id/delete' => 'divisions#destroy', as: 'divisions_delete'
+  get '/divisions/:id/edit' => 'divisions#edit', as: 'divisions_edit'
+  patch  '/divisions/:id' => 'divisions#update', as: 'update_division'
+  put   '/divisions/:id' => 'divisions#update'
+  get '/divisions/:id/delete' => 'divisions#destroy'
+ 
+ 
+
 
 end

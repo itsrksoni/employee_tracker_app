@@ -1,0 +1,4 @@
+<h3>Department : <%= @division.name %></h3>
+<%@division.employees.each do |e|%>
+<p>Employee Name : <%= e.name%></p> </br>
+<%end%>
