@@ -1,0 +1,14 @@
+<h2> List of Divisions </h2>
+
+<% @division.each do |d| %>
+<h3> Division Name : <%= link_to "#{d.name}",divisions_show_path(d.id)%> </h3>
+
+    <%= link_to "Edit",divisions_edit_path(d.id)%>
+
+    <%= link_to "Delete", divisions_delete_path(d.id),
+        method: :delete,
+        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+
+    
+   
+<% end %>

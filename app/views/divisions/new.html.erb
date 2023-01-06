@@ -1,0 +1,9 @@
+<div>
+    <h2>Create New Division</h2> <br/>
+
+    <%= form_with(model: @division) do |f| %> 
+        <%= f.label :name %>
+        <%= f.text_field :name %> <br/>
+        <%= f.submit %> <br/>
+    <% end %>
+</div>
