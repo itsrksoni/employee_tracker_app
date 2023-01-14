@@ -1,9 +1,16 @@
 <div>
     <h2>Update Division</h2> <br/>
 
-    <%= form_with(model: @division,url:divisions_edit_path) do |f| %> 
+    <%= form_with(model: @division, url:update_division_path) do |f| %> 
+          <ul>
+            <% @division.errors.full_messages.each do |error| %>
+            <li class="error-message"><%= error %></li>
+            <% end %>
+        </ul>
+
         <%= f.label :name %>
         <%= f.text_field :name %> <br/>
         <%= f.submit %> <br/>
     <% end %>
 </div>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

@@ -1,0 +1,5 @@
+<h3>List of Projects </h3>
+<h5>Project Name : <% @project.each do |p| %> </h5>
+<%=link_to "#{p.id}, #{p.name}", projects_show_path(p.id)%><br/>
+<% end %>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

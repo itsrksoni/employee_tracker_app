@@ -1,0 +1,25 @@
+
+<h2>List of Employees</h2>
+<table class="table" style="text-align:left;">
+    <tr>
+        <th>Employee Name</th>
+    </tr>
+<% @employee.each do|e|%>
+    <tr>
+    <td><%= e.name%> </td>
+        <%if current_employee.hr_manager%>
+        <td><%=link_to 'Edit',edit_employee_registration_path(e.id)%></td>
+        <%end%>
+        <% if current_employee.project_manager%>
+        <td><%=link_to "Add Project",employees_index_path(e.id)%></td>
+            <% if @emp === e.id %>
+            <%= render partial: 'project_assignment/new',
+            locals: {employee: e, project: @project} %>
+            <%end%>
+        <%end%>
+
+    <%end%>
+
+    </tr>
+</table>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

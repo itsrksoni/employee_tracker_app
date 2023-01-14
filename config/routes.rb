@@ -21,15 +21,17 @@ Rails.application.routes.draw do
     devise_for :employees,
     controllers: {
          sessions: 'employees/sessions',
-         invitations: 'employees/invitations'
+         invitations: 'employees/invitations',
+         passwords: 'employees/passwords'
     },
     :skip => [:registrations] 
   as :employee do
-  get 'employees/edit' => 'employees/registrations#edit', :as => 'edit_employee_registration'
+  get 'employees/:id' => 'employees/registrations#index', :as => 'employees_index'
+  get 'employees/edit/:id' => 'employees/registrations#edit', :as => 'edit_employee_registration'
   put 'employees' => 'employees/registrations#update', :as => 'employee_registration'
   end
 
-  #routes for divisions
+  # routes for divisions controller
   get 'divisions' => 'divisions#index', :as => 'divisions_index'
   get 'divisions/show/:id' => 'divisions#show', :as => 'divisions_show'
   post 'divisions' => 'divisions#create'
@@ -40,6 +42,18 @@ Rails.application.routes.draw do
   put   '/divisions/:id' => 'divisions#update'
   get '/divisions/:id/delete' => 'divisions#destroy'
  
+
+  # routes for projects controller
+
+  get 'projects' => 'projects#index', as: 'projects_index'
+  get 'projects/new' => 'projects#new', as: 'new_projects'
+  get 'projects/:id' => 'projects#show', as: 'projects_show'
+  post 'projects/create' => 'projects#create', as: 'projects'
+
+   # routes for project_assignment controller
+
+   post 'project_assignmnet/create' => 'project_assignments#create', as: 'project_assignment'
+   delete '/projects/:project_id/:id' => 'project_assignments#destroy', as: 'project_assignment_delete'
  
 
 

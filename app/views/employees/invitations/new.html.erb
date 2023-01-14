@@ -15,12 +15,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :division_id %>
-    <%= f.text_field :division_id%>
+  <%= f.label :division %>
+  <%= f.select :division_id, Division.all.collect { |d| [ d.name, d.id ] }, include_blank: true %>
   </div>
    <div class="field">
-    <%= f.label :master_role_id %>
-    <%= f.text_field :master_role_id%>
+   <%= f.label :master_role %>
+   <%= f.select :master_role_id, MasterRole.all.collect { |r| [ r.name, r.id ] }, include_blank: true %>
   </div>
     <div class="field">
     <%= f.label :username %>
@@ -31,3 +31,4 @@
     <%= f.submit t("devise.invitations.new.submit_button") %>
   </div>
 <% end %>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

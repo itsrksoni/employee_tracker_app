@@ -361,6 +361,6 @@ Devise.setup do |config|
 
   config.navigational_formats = ['*/*', :html, :turbo_stream]
 
-  config.mailer_sender = 'itsrksoni@gmail.com'
+ # config.mailer_sender = 'itsrksoni@gmail.com'
   
 end

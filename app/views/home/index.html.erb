@@ -1,23 +1,48 @@
-<div style= "text-align: center;
-    border: 3px solid green; margin-top: 300px;">
-    <h3 style="color:blue;">Employee Tracker App ! </h3>
-    <% if current_employee %>
-    <p class="">
-      <%= link_to "My Profile", my_profile_path %>
-    </p>
-    <h2>Dashboard</h2>
-    <%=link_to "Divisions", divisions_index_path %> </br>
-    <%=link_to "Add New Division", new_division_path %></br>
-    <%=link_to "Add New Employee", new_employee_invitation_path %>
-    <p>
+<div>
+  
+      <% if current_employee %>
+      <div class="employee-session-profile">
+
+      <%= link_to "My Profile", my_profile_path, type:"button", class:"btn btn-primary" %> <br/><br/>
+        </div>
+        <div class="session-logout">
       <%=button_to(
-                "Log Out",
-          destroy_employee_session_path,
-          method: :delete
-        ) %> 
-    </p>
-    <% else %>
-    <p><%=link_to "Sign In", new_employee_session_path %></p>
-    <% end %>
+        "Log Out",
+        destroy_employee_session_path,
+        method: :delete)%> 
+        </div>
+
+
+
+      <table class="table" style="text-align:left;">
+    
+          <% if current_employee.hr_manager %>
+              <div>
+                <div class="hr-dashboard">
+                <h1>Dashboard<span>HR Manager</span></h1>
+              </div>
+          <%= render 'hr_manager' %>
+      
+          <% elsif current_employee.project_manager%>
+          <div>
+                <div class="hr-dashboard">
+                <h1>Dashboard<span>Project Manager</span></h1>
+              </div>
+          <%= render 'project_manager' %>
+            
+          <% else %>
+          <%= render partial: 'employee', locals: {emp: current_employee } %>
+          <div>
+                <div class="hr-dashboard">
+                <h1>Dashboard<span>Employee</span></h1>
+              </div>
+          <%end%>
+      </div>
+
+      <% else %>
+      <%=link_to "Sign In", new_employee_session_path %>
+      <% end %>
+    </tr>
+    </table>
     <marquee width="60%" direction="right" height="100px"><p style="color:red;">Under Development </p></marquee>
 </div> 

@@ -1,0 +1,10 @@
+<div>
+    <h2>Create New Projects</h2> <br/>
+
+    <%= form_with(model: @project) do |f| %> 
+        <%= f.label :name %>
+        <%= f.text_field :name %> <br/>
+        <%= f.submit %> <br/>
+    <% end %>
+</div>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>
