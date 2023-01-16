@@ -8,7 +8,7 @@ class Employee < ApplicationRecord
   validates :name, length: { minimum: 3}#, presence: true
   validates :username, length: { minimum: 5, maximum: 10}, presence: true, uniqueness: true
 
-  before_create :check_MasterRole
+  before_create :is_hr_manager?
   
 
   # associated tables
@@ -21,12 +21,12 @@ class Employee < ApplicationRecord
 
   def hr_manager
 
-   if self.master_role_id == 1
-    value = true
-   else 
-    value = false
-   end
-   value
+    if self.master_role_id == 1
+      value = true
+    else 
+      value = false
+    end
+    value
  
   end
 
@@ -40,15 +40,15 @@ class Employee < ApplicationRecord
      value
 
   end
-  def check_MasterRole
-    if self.master_role_id == 1
-      value = true
-     else 
-      value = puts "you don't have access to create new employee"
-     end
-     value
+  # def check_MasterRole
+  #   if self.master_role_id == 1
+  #     value = true
+  #    else 
+  #     value = puts "you don't have access to create new employee"
+  #    end
+  #    value
 
-  end
+  # end
 
 
 end

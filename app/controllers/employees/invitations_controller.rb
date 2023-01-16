@@ -2,6 +2,7 @@ class Employees::InvitationsController < Devise::InvitationsController
     before_action :configure_permitted_parameters
     before_action :authenticate_employee!
   #  before_action :authenticate_employee!
+   
 
     protected
   
@@ -11,6 +12,9 @@ class Employees::InvitationsController < Devise::InvitationsController
     end
 
     private
+
+   
+  
 
     # def is_hr_manager?
     #     redirect_to root_path unless current_employee.hr_manager

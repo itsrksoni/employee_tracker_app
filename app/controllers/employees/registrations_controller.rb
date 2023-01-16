@@ -30,9 +30,15 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  # edit password/ additional field added for password change
+  def edit_password
+    @employee=Employee.find(params[:id])
+    
+  end
+
   # PUT /resource
   def update
-  
+
     super
     debugger
  
@@ -65,7 +71,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
    if current_employee.hr_manager
     devise_parameter_sanitizer.permit(:account_update, keys: [:image, :name, :username])
    else
-    devise_parameter_sanitizer.permit(:account_update, keys: [:image], except: [:email])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:image, :password, :password_confirmation], except: [:email, :username, :name])
    end
 
   end

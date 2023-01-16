@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   as :employee do
   get 'employees/:id' => 'employees/registrations#index', :as => 'employees_index'
   get 'employees/edit/:id' => 'employees/registrations#edit', :as => 'edit_employee_registration'
+  get 'employees/edit/:id/change_password' => 'employees/registrations#edit_password', :as => 'edit_employee_registration_password'
   put 'employees' => 'employees/registrations#update', :as => 'employee_registration'
   end
 
