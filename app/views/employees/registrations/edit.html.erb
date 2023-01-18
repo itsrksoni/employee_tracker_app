@@ -15,6 +15,10 @@
     <%= f.label :username %>
     <%= f.text_field :username%>
   </div>
+    <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    </div>
   <% else %>
    <div class="field">
     <%= f.label :email %><br />
@@ -33,11 +37,6 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
-
-   <div class="field">
-    <%= f.file_field :image %>
-  </div>
 
   <div class="actions">
     <%= f.submit "Update" %>

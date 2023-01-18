@@ -1,8 +1,7 @@
 <div class="home-dashboard">
   
-      <% if current_employee %>
+    <% if current_employee %>
         <div class="employee-session-profile">
-
         <%= link_to "My Profile", my_profile_path, type:"button", class:"btn btn-primary" %> <br/><br/>
         </div>
 
@@ -30,12 +29,12 @@
           <%= render 'project_manager' %>
             
           <% else %>
-          <%= render partial: 'employee', locals: {emp: current_employee } %>
           
                 <div class="hr-dashboard">
                 <h1>Dashboard<span>Employee</span></h1>
                 </div>
-          <%end%>
+           <%= render partial: 'employee', locals: {emp: current_employee } %>
+          <% end %>
 
       <% else %>
       <%=link_to "Sign In", new_employee_session_path %>

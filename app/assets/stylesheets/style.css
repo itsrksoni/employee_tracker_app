@@ -1,5 +1,5 @@
 
-.project_manager_dasboard-btn-1 {
+.hr-manager-dasboard-btn-1 {
     
     display: flex;
     justify-content: center;
@@ -7,12 +7,11 @@
     align-content: center;
     flex-wrap: wrap;
     width: 40vw;
-    margin: 5% 0 0 10%;
-   
+    margin: 5% 0 0 10%;  
     padding: 0;
   
   }
-  .project_manager_dasboard-btn-2 {
+  .hr-manager-dasboard-btn-2 {
       
       display: flex;
       justify-content: center;
@@ -20,14 +19,13 @@
       align-content: center;
       flex-wrap: wrap;
       width: 40vw;
-      margin: 0 0 0 10%;
-     
+      margin: 0 0 0 10%;   
       padding: 0;
      
     
     }
 
-.project_manager_dasboard-btn {
+.hr-manager-dasboard-btn {
     flex: 1 1 auto;
     margin: 10px;
     padding: 30px;
@@ -40,7 +38,7 @@
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
    }
-   .project_manager_dasboard-btn {
+   .hr-manager-dasboard-btn {
     background-image: linear-gradient(to right, #88765b 50%, #6a321f 51%, #ffecd2 80%);
     text-decoration: none;
   }

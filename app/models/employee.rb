@@ -8,7 +8,7 @@ class Employee < ApplicationRecord
   validates :name, length: { minimum: 3}#, presence: true
   validates :username, length: { minimum: 5, maximum: 10}, presence: true, uniqueness: true
 
-  before_create :is_hr_manager?
+  #before_create :is_hr_manager?
   
 
   # associated tables

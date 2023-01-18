@@ -1,22 +1,23 @@
 class ProjectAssignmentsController < ApplicationController
     before_action :authenticate_employee!
-    #before_action :is_project_manager?
+    before_action :is_project_manager?
 
 
-    def create
-     
-        @project_assignment= ProjectAssignment.new(params.permit(:employee_id,:project_id))
+    def assign_project
+        @employee = Employee.new
+        @project_assignment= ProjectAssignment.new(params.require(:project_assignment).permit(:employee_id,:project_id))
         if @project_assignment.save
             flash[:alert] = "Project Assigned"
             redirect_to projects_index_path
         else
-            redirect_to employees_index_path(:id=>params[:employee_id])
+            
+            redirect_to employees_index_path(:id=>" ")
         end
 
     end
 
     # def edit
-    #     @project_assignment= rojectAssignmen.find(params[:id])
+    #     @project_assignment= projectAssignmen.find(params[:id])
     # end
 
     # def update
@@ -45,9 +46,9 @@ class ProjectAssignmentsController < ApplicationController
 
     private
 
-    # def is_project_manager?
-    #     redirect_to root_path unless current_employee.master_role_id==2
-    # end
+    def is_project_manager?
+        redirect_to root_path unless current_employee.project_manager
+    end
 
 
 

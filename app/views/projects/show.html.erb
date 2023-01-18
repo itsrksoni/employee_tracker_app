@@ -3,8 +3,10 @@
 <% @project.employees.each do |e| %>
 <%project_id=@project.id%>
 <%= "+ #{e.name}" %> <br/>
-<%= link_to "Remove", project_assignment_delete_path(project_id, e.id),
-                method: :delete,
-                data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>  <br/>
-<%end%>
+    <% if current_employee.project_manager%>
+    <%= button_to "Remove", project_assignment_delete_path(project_id, e.id),
+                    method: :delete,
+                    data: {confirm: 'Are you sure?' } %>  <br/>
+    <% end %>
+<% end %>
 <button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

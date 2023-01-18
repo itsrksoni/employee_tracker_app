@@ -6,10 +6,4 @@ class HomeController < ApplicationController
         
     end
 
-    #employee profile
-    def profile
-        
-    end
-
-
 end

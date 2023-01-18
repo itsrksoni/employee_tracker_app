@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   
     root to: "home#index"
-    
-    get 'my_profile', to: 'home#profile', as: 'my_profile'
-
+  
     # devise_for :employees, controllers: {
     #   sessions: 'employees/sessions',
     #   registrations: 'employees/registrations',
@@ -53,8 +51,25 @@ Rails.application.routes.draw do
 
    # routes for project_assignment controller
 
-   post 'project_assignmnet/create' => 'project_assignments#create', as: 'project_assignment'
+   post 'project_assignmnet/assign_project' => 'project_assignments#assign_project'
    delete '/projects/:project_id/:id' => 'project_assignments#destroy', as: 'project_assignment_delete'
+
+   # profile controller for employee
+
+   get 'my_profile', to: 'profiles#profile', as: 'my_profile'
+   get 'profile/change_photo' => 'profiles#change_photo'
+   patch 'profile/change_photo' => 'profiles#update_photo'
+   get 'profile/edit_password' => 'profiles#edit_password'
+   patch 'profile/update_password' => 'profiles#update_password'
+
+
+  # resource :profile, only: [:edit] do
+  #   collection do
+  #     get 'edit_password'
+  #     patch 'update_password'
+  #   end
+  #end
+
  
 
 

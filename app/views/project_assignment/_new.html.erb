@@ -1,6 +1,6 @@
 <div>
     <h2>Assign Project</h2> <br/>
-    <%= form_with(model: @project_assignment, url:project_assignment_path) do |f| %> 
+    <%= form_with(model: @project_assignment, url: project_assignment_path) do |f| %> 
         <%= f.select :project_id, Project.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
         <%= f.hidden_field :employee_id, :value => employee.id %> <br/>
         <%= f.submit %> <br/>

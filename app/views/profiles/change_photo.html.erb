@@ -1,0 +1,12 @@
+<h2>Change Profile Picture</h2>
+
+<%= form_for(@employee, :url => {:action => "update_photo" } ) do |f| %>
+
+    <div class="field">
+    <%= f.file_field :image %>
+    </div>
+
+   <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

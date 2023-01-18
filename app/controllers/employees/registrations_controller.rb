@@ -4,13 +4,14 @@ class Employees::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :authenticate_employee!
-  #before_action :is_hr_manager? , only: [:edit, :update]
+  before_action :is_hr_manager? , only: [:edit, :update]
 
 
   def index
     @employee = Employee.all
-    @emp= (params[:id]).to_i
+    @project_manager_choice = (params[:id]).to_i
     @project = Project.all
+    @project_assignment = ProjectAssignment.new
   end
 
   # GET /resource/sign_up
@@ -30,17 +31,10 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  # edit password/ additional field added for password change
-  def edit_password
-    @employee=Employee.find(params[:id])
-    
-  end
-
   # PUT /resource
   def update
 
     super
-    debugger
  
   end
 
@@ -69,7 +63,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
    # devise_parameter_sanitizer.permit(:account_update, except: [:password])
    if current_employee.hr_manager
-    devise_parameter_sanitizer.permit(:account_update, keys: [:image, :name, :username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :username])
    else
     devise_parameter_sanitizer.permit(:account_update, keys: [:image, :password, :password_confirmation], except: [:email, :username, :name])
    end
@@ -80,9 +74,9 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   end
 
 
-#   def is_hr_manager?
-#     redirect_to root_path unless current_employee.hr_manager
-# end
+  def is_hr_manager?
+    redirect_to root_path unless current_employee.hr_manager
+end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
