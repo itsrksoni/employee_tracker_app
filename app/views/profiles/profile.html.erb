@@ -1,0 +1,27 @@
+<h1>My Profile</h1>
+<table class="table" style="text-align:left;">
+    <p><%=link_to "Change Password",profile_edit_password_path%></p>
+    <% if current_employee.image.attached?%>
+    <tr>
+        <td><%= image_tag current_employee.image.variant(resize_to_limit: [100, 100]) %>
+            <span><p><%=link_to "Change Profile Photo",profile_change_photo_path%></p></span>
+         </td>
+    </tr>
+    <% else%>
+     <tr>
+        <td>
+     <span><p><%=link_to "Add Profile Photo",profile_change_photo_path%></p></span>
+    <%end%>
+    </td>
+    </tr>
+    <tr>
+        <td><b> Username :</b> <%= current_employee.username%></td>
+    </tr>
+    <tr>
+        <td><b>Name :</b> <%= current_employee.name%></td>
+    </tr>
+    <tr>
+        <td><b>Email :</b> <%= current_employee.email%></td>
+    </tr>
+</table>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

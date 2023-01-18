@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   
     root to: "home#index"
-    
-    get 'my_profile', to: 'home#profile', as: 'my_profile'
-
+  
     # devise_for :employees, controllers: {
     #   sessions: 'employees/sessions',
     #   registrations: 'employees/registrations',
@@ -21,15 +19,18 @@ Rails.application.routes.draw do
     devise_for :employees,
     controllers: {
          sessions: 'employees/sessions',
-         invitations: 'employees/invitations'
+         invitations: 'employees/invitations',
+         passwords: 'employees/passwords'
     },
     :skip => [:registrations] 
   as :employee do
-  get 'employees/edit' => 'employees/registrations#edit', :as => 'edit_employee_registration'
+  get 'employees/:id' => 'employees/registrations#index', :as => 'employees_index'
+  get 'employees/edit/:id' => 'employees/registrations#edit', :as => 'edit_employee_registration'
+  get 'employees/edit/:id/change_password' => 'employees/registrations#edit_password', :as => 'edit_employee_registration_password'
   put 'employees' => 'employees/registrations#update', :as => 'employee_registration'
   end
 
-  #routes for divisions
+  # routes for divisions controller
   get 'divisions' => 'divisions#index', :as => 'divisions_index'
   get 'divisions/show/:id' => 'divisions#show', :as => 'divisions_show'
   post 'divisions' => 'divisions#create'
@@ -40,6 +41,35 @@ Rails.application.routes.draw do
   put   '/divisions/:id' => 'divisions#update'
   get '/divisions/:id/delete' => 'divisions#destroy'
  
+
+  # routes for projects controller
+
+  get 'projects' => 'projects#index', as: 'projects_index'
+  get 'projects/new' => 'projects#new', as: 'new_projects'
+  get 'projects/:id' => 'projects#show', as: 'projects_show'
+  post 'projects/create' => 'projects#create', as: 'projects'
+
+   # routes for project_assignment controller
+
+   post 'project_assignmnet/assign_project' => 'project_assignments#assign_project'
+   delete '/projects/:project_id/:id' => 'project_assignments#destroy', as: 'project_assignment_delete'
+
+   # profile controller for employee
+
+   get 'my_profile', to: 'profiles#profile', as: 'my_profile'
+   get 'profile/change_photo' => 'profiles#change_photo'
+   patch 'profile/change_photo' => 'profiles#update_photo'
+   get 'profile/edit_password' => 'profiles#edit_password'
+   patch 'profile/update_password' => 'profiles#update_password'
+
+
+  # resource :profile, only: [:edit] do
+  #   collection do
+  #     get 'edit_password'
+  #     patch 'update_password'
+  #   end
+  #end
+
  
 
 

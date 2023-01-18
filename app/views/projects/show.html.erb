@@ -1,0 +1,12 @@
+<h4>Project Name : <%= @project.name%></h4>
+<p>Employee Name : </p>
+<% @project.employees.each do |e| %>
+<%project_id=@project.id%>
+<%= "+ #{e.name}" %> <br/>
+    <% if current_employee.project_manager%>
+    <%= button_to "Remove", project_assignment_delete_path(project_id, e.id),
+                    method: :delete,
+                    data: {confirm: 'Are you sure?' } %>  <br/>
+    <% end %>
+<% end %>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>

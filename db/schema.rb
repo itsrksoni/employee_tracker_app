@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_121105) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_130154) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,7 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_121105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "master_role_id", null: false
-    t.integer "division_id", null: false
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -65,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_121105) do
     t.string "invited_by_type"
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.integer "division_id"
     t.index ["division_id"], name: "index_employees_on_division_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["invitation_token"], name: "index_employees_on_invitation_token", unique: true

@@ -1,0 +1,37 @@
+
+<h2>List of Employees</h2>
+<table>
+    <tr>
+        <th>Employee Name</th>
+    </tr>
+    <% @employee.each do |e| %>
+
+    <tr>
+    <td><%= e.name%> </td>
+        <%if current_employee.hr_manager%>
+        <td><%=link_to 'Edit',edit_employee_registration_path(e.id)%></td>
+        <%end%>
+        <% if current_employee.project_manager%>
+        <td><%=link_to "Add Project",employees_index_path(e.id)%></td>
+
+        <!-- on project_manager choice the add project field will be open for project assignment -->
+          <td>  <% if @project_manager_choice === e.id %>
+    
+            <h2>Assign Project</h2> <br/>
+            <%= form_for @project_assignment, url: '/project_assignmnet/assign_project', method: :post do |f| %> 
+            <%= f.select :project_id, Project.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
+            <%= f.hidden_field :employee_id, :value => e.id %> 
+            <%= f.submit %>
+
+            <% end %>
+
+            <%end%>
+            </td>
+        <!-- -->
+        <%end%>
+
+    <%end%>
+
+    </tr>
+</table>
+<button type="button" class="btn btn-primary"><%= link_to "Back", :back , class:"btn" %></button>
